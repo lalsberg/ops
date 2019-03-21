@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+
 @Entity
 @Table(name = "resolution")
 public class Resolution {
@@ -20,8 +22,15 @@ public class Resolution {
 
 	public Match match(Ops ops, ExpressionMatcher expressionMatcher) {
 		int score = expressionMatcher.getScore(this, ops);
+ 
+		System.out.println(score);
 
 		return new Match(this, ops, score);
 	}
 
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this);
+	}
+	
 }
