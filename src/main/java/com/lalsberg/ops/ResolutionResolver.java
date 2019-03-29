@@ -6,9 +6,9 @@ import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class ResolutionResolver {
 
 	private ResolutionRepository resolutionRepository;
@@ -29,6 +29,7 @@ public class ResolutionResolver {
 				.map(resolution -> resolution.match(ops, expressionMatcher))
 				.collect(toList());
 
+		
 		Collections.sort(matchs, matchComparator);
 
 		return matchs.stream().map(Match::getResolution).collect(toList());

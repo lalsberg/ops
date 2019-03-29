@@ -9,6 +9,8 @@ import javax.persistence.Table;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name = "resolution")
 public class Resolution {
@@ -18,6 +20,7 @@ public class Resolution {
 	private long id;
 
 	@Column(name = "description")
+	@JsonProperty(value = "description")
 	private String description;
 
 	public Match match(Ops ops, ExpressionMatcher expressionMatcher) {
@@ -26,6 +29,10 @@ public class Resolution {
 		System.out.println(score);
 
 		return new Match(this, ops, score);
+	}
+
+	public String getDescription() {
+		return description;
 	}
 
 	@Override
