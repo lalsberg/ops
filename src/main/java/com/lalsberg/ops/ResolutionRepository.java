@@ -8,4 +8,6 @@ public interface ResolutionRepository extends JpaRepository<Resolution, Long> {
 
 	List<Resolution> findAll();
 
+	List<Resolution> findAllByOrderByFrequencyDesc();
+
 }

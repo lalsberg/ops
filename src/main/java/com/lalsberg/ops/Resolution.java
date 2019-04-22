@@ -19,9 +19,18 @@ public class Resolution {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
+	@Column(name = "title")
+	@JsonProperty(value = "title")
+	private String title;
+
 	@Column(name = "description")
 	@JsonProperty(value = "description")
 	private String description;
+
+	@Column(name = "frequency")
+	@JsonProperty(value = "frequency")
+	private int frequency;
+
 
 	public Match match(Ops ops, ExpressionMatcher expressionMatcher) {
 		int score = expressionMatcher.getScore(this, ops);
@@ -31,13 +40,21 @@ public class Resolution {
 		return new Match(this, ops, score);
 	}
 
+	public String getTitle() {
+		return title;
+	}
+
 	public String getDescription() {
 		return description;
+	}
+
+	public int getFrequency() {
+		return frequency;
 	}
 
 	@Override
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this);
 	}
-	
+
 }
