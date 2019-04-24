@@ -14,10 +14,22 @@ public class ResolutionDTO {
 	@JsonProperty(value = "frequency")
 	private int frequency;
 
+	@Deprecated //jackson
+	public ResolutionDTO() {
+	}
+
 	public ResolutionDTO(String title, String description, int frequency) {
 		this.title = title;
 		this.description = description;
 		this.frequency = frequency;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+
+	public String getDescription() {
+		return description;
 	}
 
 	@Override

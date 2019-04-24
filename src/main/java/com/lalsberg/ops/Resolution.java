@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Resolution {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
 	@Column(name = "title")
@@ -31,6 +31,16 @@ public class Resolution {
 	@JsonProperty(value = "frequency")
 	private int frequency;
 
+
+	@Deprecated //hibernate
+	public Resolution() {
+		super();
+	}
+
+	public Resolution(String title, String description) {
+		this.title = title;
+		this.description = description;
+	}
 
 	public Match match(Ops ops, ExpressionMatcher expressionMatcher) {
 		int score = expressionMatcher.getScore(this, ops);

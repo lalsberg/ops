@@ -45,4 +45,13 @@ public class Controller {
 		System.out.println(collect);
 		return collect;
 	}
+
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
+	@RequestMapping(method = POST, path = "/resolution/create")
+	public void createResolution(@RequestBody ResolutionDTO resolutionDTO) {
+		System.out.println(resolutionDTO);
+		
+		Resolution resolution = new Resolution(resolutionDTO.getTitle(), resolutionDTO.getDescription());
+		resolutionRepository.save(resolution);
+	}
 }
