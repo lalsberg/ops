@@ -12,8 +12,8 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
-@Table(name = "resolution")
-public class Resolution {
+@Table(name = "solution")
+public class Solution {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,23 +31,25 @@ public class Resolution {
 	@JsonProperty(value = "frequency")
 	private int frequency;
 
-
-	@Deprecated //hibernate
-	public Resolution() {
+	/**
+	 * Hibernate eyes only
+	 */
+	@Deprecated
+	public Solution() {
 		super();
 	}
 
-	public Resolution(String title, String description) {
+	public Solution(String title, String description) {
 		this.title = title;
 		this.description = description;
 	}
 
-	public Match match(Ops ops, ExpressionMatcher expressionMatcher) {
-		int score = expressionMatcher.getScore(this, ops);
- 
-		System.out.println(score);
+	public void incrementFrequency() {
+		this.frequency ++;
+	}
 
-		return new Match(this, ops, score);
+	public long getId() {
+		return this.id;
 	}
 
 	public String getTitle() {

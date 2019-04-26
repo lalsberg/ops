@@ -3,7 +3,10 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ResolutionDTO {
+public class SolutionDTO {
+
+	@JsonProperty(value = "id")
+	private long id;
 
 	@JsonProperty(value = "title")
 	private String title;
@@ -15,10 +18,11 @@ public class ResolutionDTO {
 	private int frequency;
 
 	@Deprecated //jackson
-	public ResolutionDTO() {
+	public SolutionDTO() {
 	}
 
-	public ResolutionDTO(String title, String description, int frequency) {
+	public SolutionDTO(long id, String title, String description, int frequency) {
+		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.frequency = frequency;
