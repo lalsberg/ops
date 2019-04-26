@@ -36,3 +36,9 @@ HELP.md
 .classpath
 bin/
 src/main/resources/application.properties
+
+### frontend
+node_modules/
+dist/
+npm-debug.log
+yarn-error.log
