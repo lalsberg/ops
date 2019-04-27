@@ -8,6 +8,7 @@ public interface SolutionRepository extends JpaRepository<Solution, Long> {
 
 	List<Solution> findAll();
 
-	List<Solution> findAllByOrderByFrequencyDesc();
+//	List<Solution> findAllByArchivedFalseOrderByFrequencyDesc();
+	List<Solution> findAllByArchivedFalse();
 
 }

@@ -17,17 +17,25 @@ public class SolutionDTO {
 	@JsonProperty(value = "frequency")
 	private int frequency;
 
+	@JsonProperty(value = "archived")
+	private boolean archived;
+
 	@Deprecated //jackson
 	public SolutionDTO() {
 	}
 
-	public SolutionDTO(long id, String title, String description, int frequency) {
+	public SolutionDTO(long id, String title, String description, int frequency, boolean archived) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.frequency = frequency;
+		this.archived = archived;
 	}
-	
+
+	public long getId() {
+		return id;
+	}
+
 	public String getTitle() {
 		return title;
 	}
