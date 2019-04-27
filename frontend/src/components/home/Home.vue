@@ -28,11 +28,13 @@
 
 		computed: {
 			filteredSolutions() {
+				var activeSolutions = this.solutions.filter(solution => {return !solution.archived });
+				console.log(activeSolutions);
 				if (!this.filter) {
-					return this.solutions;
+					return activeSolutions;
 				}
 				let exp = new RegExp(this.filter.trim(), 'i');
-				return this.solutions.filter(solution => exp.test(solution.title));
+				return activeSolutions.filter(solution => exp.test(solution.title));
 			}
 		},
 

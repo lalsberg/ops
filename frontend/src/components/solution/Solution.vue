@@ -2,7 +2,18 @@
 	<div class="solution">
 
 		<div class="solution-head">
-			<span> {{ solution.title }}</span>
+			<div class="title-half">
+				<span> {{ solution.title }}</span>
+			</div>
+			<div>
+				<tbutton @buttonClicked="archive(solution)" class="btn-edit">
+					<i class="material-icons">archive</i>
+				</tbutton>
+
+				<tbutton @buttonClicked="edit(solution)" class="btn-edit">
+					<i class="material-icons">edit</i>
+				</tbutton>
+			</div>
 		</div>
 
 		<div class="solution-description">
@@ -10,11 +21,20 @@
 		</div>
 
 		<div class="frequency">
-			<p class="mg-font-bold total-value-desc">Frequência:</p>
-			<p class="mg-font-bold mg-font-size-xl real-value"> {{ solution.frequency }} </p>
-			<tbutton @buttonClicked="incrementFrequency(solution)" class="btn-increment-frequency">
-				<i class="material-icons">exposure_plus_1</i>
-			</tbutton>
+			<div class="frequency-half">
+				<p class="mg-font-bold total-value-desc">Frequência:</p>
+				<p class="mg-font-bold mg-font-size-xl real-value"> {{ solution.frequency }} </p>
+			</div>
+
+			<div>
+				<tbutton @buttonClicked="decrementFrequency(solution)" class="btn-change-frequency">
+					<i class="material-icons">exposure_neg_1</i>
+				</tbutton>
+
+				<tbutton @buttonClicked="incrementFrequency(solution)" class="btn-change-frequency">
+					<i class="material-icons">exposure_plus_1</i>
+				</tbutton>
+			</div>
 		</div>
 
 	</div>
@@ -40,12 +60,22 @@ export default {
     methods: {
     	incrementFrequency: function(solution) {
     		this.$http.post('http://localhost:8080/solution/' + solution.id + '/frequency')
-					.then(function(response) {
-						console.log(response);
-						this.solution.frequency++;
-					}
-					, err => {this.sending = false; console.log(err)});
-    	}
+					.then(res => this.solution.frequency++, err => console.log(err));
+    	},
+
+    	decrementFrequency: function(solution) {
+    		this.$http.delete('http://localhost:8080/solution/' + solution.id + '/frequency')
+					.then(res => this.solution.frequency--, err => console.log(err));
+    	},
+
+    	edit: function(solution) {
+    		this.$router.push("/editSolution/" + solution.id);
+    	},
+
+    	archive: function(solution) {
+    		this.$http.delete('http://localhost:8080/solution/' + solution.id)
+					.then(res => { this.solution.archived = true }, err => console.log(err));
+    	},
     }
 }
 </script>
@@ -54,6 +84,14 @@ export default {
 	.frequency {
 	    padding: 0.9em;
 	    border-top: 1px solid silver;
+	    display: flex;
+	    justify-content: space-between;
+		flex-wrap: wrap;
+		align-items: center;
+	}
+
+	.frequency-half {
+		display: inline-block;
 	}
 
 	p {
@@ -82,8 +120,16 @@ export default {
 	    border-color: rgb(221, 221, 221);
 	    border-top-left-radius: 6px;
 	    border-top-right-radius: 6px;
-	    padding: 1em 1em;
+	    padding: 0.6em 1em;
 	    border-bottom: 1px solid silver;
+	    display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		align-items: center;
+	}
+
+	.title-half {
+		display: inline-block;
 	}
 
 	.solution {
@@ -121,8 +167,7 @@ export default {
 	    font-weight: 400;
 	}
 
-	.btn-increment-frequency {
-		float: right;
+	.btn-edit {
+		display: inline-block;
 	}
-
 </style>
