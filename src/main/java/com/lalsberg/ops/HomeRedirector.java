@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeRedirector {
 
 	@RequestMapping(value = "/{path:[^\\.]*}")
-//	@RequestMapping(value = "^(?!api)\\w+$")
 	public String redirect() {
 	  return "forward:/";
 	}

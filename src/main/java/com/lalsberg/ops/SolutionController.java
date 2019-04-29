@@ -109,7 +109,7 @@ public class SolutionController {
 		return ResponseEntity.ok().build();
 	}
 
-	@RequestMapping(method = GET, path = "/statsss", produces = "application/json")
+	@RequestMapping(method = GET, path = "/solutions/stats", produces = "application/json")
 	public ResponseEntity<StatsDTO> stats() {
 		System.out.println("aaaaa");
 		List<SolutionUse> solutionUses = solutionUseRepository.findAllByOrderByCreatedAt();

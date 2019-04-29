@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 @Entity
 @Table(name = "solution_use")
@@ -51,7 +52,7 @@ public class SolutionUse {
 
 	@Override
 	public String toString() {
-		return ReflectionToStringBuilder.toString(this);
+		return ReflectionToStringBuilder.toString(this, ToStringStyle.JSON_STYLE);
 	}
 
 }

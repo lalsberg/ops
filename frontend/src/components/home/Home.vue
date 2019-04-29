@@ -1,7 +1,11 @@
 <template>
 	<div class="wrapper">
-		<input type="search" class="filter" placeholder="Filter solutions" v-on:input="filter = $event.target.value">
-
+		<div class="search-line">
+			<input type="search" class="filter" placeholder="Filter solutions" v-on:input="filter = $event.target.value">
+			<tbutton class="btn-add-solution" to="/createSolution">
+				<i class="material-icons">add</i>
+			</tbutton>
+		</div>
 		<div class="solution-panel" v-for="solution in filteredSolutions">
 			<the-solution :solution="solution"/>
 		</div>
@@ -11,12 +15,15 @@
 
 <script>
 	import Solution from '../../components/solution/Solution.vue';
+	import TButton from '../../components/shared/TButton.vue';
+
 
 	export default {
 		name: 'home',
 
 		components: {
-			'the-solution': Solution
+			'the-solution': Solution,
+			'tbutton': TButton
 		},
 
 		data() {
@@ -63,12 +70,22 @@
 		}
 	}
 
+	.search-line {
+	    display: flex;
+	    justify-content: space-between;
+		flex-wrap: nowrap;
+	}
 	.filter {
-		display: block;
-		width: 100%;
+		display: inline-block;
+		width: calc(100% - 5em);
 		-webkit-appearance: textfield;
 		line-height: 1em;
 		padding: 1em 1em;
 		margin: 0 auto
+	}
+
+	.btn-add-solution {
+		display: inline-block;
+		width: 3em;
 	}
 </style>

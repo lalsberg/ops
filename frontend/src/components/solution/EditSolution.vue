@@ -58,6 +58,7 @@
 	.wrapper {
 		width: 90%;
 		margin: 0 auto;
+		font-family: helvetica_neue_lt_std45_light,sans-serif;
 	}
 
 	@media (min-width: 1024px) {

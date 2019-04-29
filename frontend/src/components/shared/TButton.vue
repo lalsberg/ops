@@ -7,9 +7,18 @@
 
 <script>
     export default {
+        props: {
+            to: {
+                required: false
+            }
+        },
+
         methods: {
             clickIt: function() {
                 this.$emit("buttonClicked");
+                if (this.to) {
+                    this.$router.push("/createSolution")
+                }
             }
         }
     }

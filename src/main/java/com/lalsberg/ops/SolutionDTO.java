@@ -1,5 +1,6 @@
 package com.lalsberg.ops;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -20,7 +21,10 @@ public class SolutionDTO {
 	@JsonProperty(value = "archived")
 	private boolean archived;
 
-	@Deprecated //jackson
+	/*
+	 * Jackson eyes only
+	 */
+	@Deprecated
 	public SolutionDTO() {
 	}
 
@@ -46,7 +50,7 @@ public class SolutionDTO {
 
 	@Override
 	public String toString() {
-		return ReflectionToStringBuilder.toString(this);
+		return ReflectionToStringBuilder.toString(this, ToStringStyle.JSON_STYLE);
 	}
 	
 }

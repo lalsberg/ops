@@ -6,8 +6,8 @@ import Stats from './components/solution/Stats.vue';
 export const routes = [
 
     { path: '', component: Home, theTitle: 'Home' },
-    { path: '/createSolution', component: CreateSolution, theTitle: 'Create Solution'},
-    { path: '/editSolution/:id', component: EditSolution, theTitle: 'Edit Solution'},
+    { path: '/createSolution', component: CreateSolution},
+    { path: '/editSolution/:id', component: EditSolution},
     { path: '/stats', component: Stats, theTitle: 'Stats'}
 
 ];

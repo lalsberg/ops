@@ -24,10 +24,10 @@
 		},
 
 		created() {
-			// this.loaded = false;
+			this.loaded = false;
 			var chartdata = {};
 			chartdata.datasets = [];
-			this.$http.get('http://localhost:8080/statsss')
+			this.$http.get('http://localhost:8080/solutions/stats')
 			// .then(res => console.log(res.body))
 			.then(res => res.json())
 			.then(res => {
@@ -44,13 +44,6 @@
 				console.log(this.chartdata);
 			})
 			;
-			// 	.then(res => console.log(res))
-			// 	.then(res => res.json())
-			// 	.then(function(stats) {
-			// 		console.log(stats);
-			// 		this.chartdata = stats;
-			// 		this.loaded=true;
-			// 	}, err => console.log(err));
 		}
 	}
 </script>
