@@ -1,19 +1,37 @@
 <template>
-	<div class="stats-chart">
+	<div class="wrapper">
 		<!-- <chart v-if="loaded" :chartdata="chartdata" :options="options"/> -->
-		<chart v-if="loaded" :chartdata="chartdata"/>
+		<div class="select-date">
+			<div>
+				<label>De</label>
+				<datepicker format="dd/MM/yyyy" class="datepicker"></datepicker>
+			</div>
+
+			<div>
+				<label>Até</label>
+				<datepicker format="dd/MM/yyyy" class="datepicker"></datepicker>
+			</div>
+
+			<tbutton>Filtrar</tbutton>
+		</div>
+
+		<chart v-if="loaded" :chartdata="chartdata" class="chart"/>
 
 	</div>
 </template>
 
 <script>
 	import Chart from './Chart.vue'
+	import Datepicker from 'vuejs-datepicker';
+	import TButton from '../shared/TButton.vue';
 
 	export default {
 		name: 'Stats',
 
 		components: { 
-			'chart': Chart
+			'chart': Chart,
+			Datepicker,
+			'tbutton': TButton
 		},
 
 		data() {
@@ -49,8 +67,20 @@
 </script>
 
 <style>
-	.stats-chart {
+	.datepicker {
+		display: inline-block;
+	}
+	.select-date {
+		display: flex;
+		justify-content: space-between;
+	}
+	.wrapper {
 		width: 30%;
 		height: 30%;
+		margin: 0 auto;
+	}
+
+	.chart {
+		margin-top: 3em;
 	}
 </style>
