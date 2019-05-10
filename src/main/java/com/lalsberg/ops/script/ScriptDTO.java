@@ -1,43 +1,35 @@
 package com.lalsberg.ops.script;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
-@Entity
-@Table(name = "script")
-public class Script {
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ScriptDTO {
+
+	@JsonProperty(value = "id")
 	private long id;
 
-	@Column(name = "title")
+	@JsonProperty(value = "title")
 	private String title;
 
-	@Column(name = "content")
+	@JsonProperty(value = "content")
 	private String content;
 
-	@Column(name = "solution")
+	@JsonProperty(value = "solution")
 	private String solution;
 
-	@Column(name = "archived")
+	@JsonProperty(value = "archived")
 	private boolean archived;
 
 	/**
-	 * Hibernate eyes only
+	 * Jackson eyes only
 	 */
 	@Deprecated
-	Script() {
-		super();
+	public ScriptDTO() {
 	}
 
-	public Script(String title, String content, String solution) {
+	public ScriptDTO(String title, String content, String solution) {
+		super();
 		this.title = title;
 		this.content = content;
 		this.solution = solution;

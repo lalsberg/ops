@@ -37,11 +37,11 @@ public class SolutionController {
 	}
 
 	@RequestMapping(method = POST, path = "/solution/create")
-	public void createSolution(@RequestBody SolutionDTO solutionDTO) {
-		System.out.println(solutionDTO);
-		
+	public ResponseEntity<Void> create(@RequestBody SolutionDTO solutionDTO) {
 		Solution resolution = new Solution(solutionDTO.getTitle(), solutionDTO.getDescription());
 		solutionRepository.save(resolution);
+
+		return ResponseEntity.ok().build();
 	}
 
 	@RequestMapping(method = POST, path = "/solution/{solutionId}/frequency")
