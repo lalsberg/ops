@@ -1,0 +1,21 @@
+-- Create syntax for TABLE 'script'
+CREATE TABLE `script` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(300) NOT NULL,
+  `content` varchar(4000) NOT NULL DEFAULT '',
+  `solution` varchar(4000) NOT NULL,
+  `archived` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+-- Create syntax for TABLE 'script_use'
+CREATE TABLE `script_use` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `script_id` int(11) unsigned NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `FK_script_use_script` (`script_id`),
+  CONSTRAINT `FK_script_use_script` FOREIGN KEY (`script_id`) REFERENCES `script` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
