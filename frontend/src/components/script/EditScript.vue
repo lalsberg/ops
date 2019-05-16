@@ -1,10 +1,13 @@
 <template>
 	<div class="wrapper">
 		<label>Titulo</label>
-		<input v-model="solution.title" class="my-input"></input>
+		<input v-model="script.title" class="my-input"></input>
 
-		<label>Descricao</label>
-		<textarea v-model="solution.description" class="my-input"></textarea>
+		<label>Script</label>
+		<textarea v-model="script.content" class="my-input"></textarea>
+
+		<label>Solução</label>
+		<textarea v-model="script.solution" class="my-input"></textarea>
 
 		<my-button @buttonClicked='save()' class="create-button">
 			<span>Save</span>
@@ -25,25 +28,26 @@
 
 		data () {
 			return {
-				solution: {
+				script: {
 					id: 0,
 					title: '',
-					description: ''
+					content: '',
+					solution: ''
 				}
 			}
 		},
 
 		methods: {
 			save: function() {
-				this.$http.put('http://localhost:8080/solution', this.solution)
+				this.$http.put('http://localhost:8080/script', this.script)
 					.then(res => this.$router.push("/"), err => console.log(err));
 			}
 		},
 
 		created() {
-			this.$http.get('http://localhost:8080/solution/' + this.$route.params.id)
+			this.$http.get('http://localhost:8080/script/' + this.$route.params.id)
 				.then(res => res.json())
-				.then(solution => this.solution = solution, err => console.log(err));
+				.then(script => this.script = script, err => console.log(err));
 		}
 
 	}

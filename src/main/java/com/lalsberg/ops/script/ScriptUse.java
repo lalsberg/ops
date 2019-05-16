@@ -1,4 +1,4 @@
-package com.lalsberg.ops;
+package com.lalsberg.ops.script;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -15,9 +15,11 @@ import javax.persistence.Table;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+import com.lalsberg.ops.script.Script;
+
 @Entity
-@Table(name = "solution_use")
-public class SolutionUse {
+@Table(name = "script_use")
+public class ScriptUse {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,8 +27,8 @@ public class SolutionUse {
 	private long id;
 
 	@ManyToOne
-	@JoinColumn(name = "solution_id")
-	private Solution solution;
+	@JoinColumn(name = "script_id")
+	private Script script;
 
 	@Column(name = "created_at", insertable = false, updatable = false)
 	private LocalDateTime createdAt;
@@ -35,7 +37,7 @@ public class SolutionUse {
 	 * Hibernate eyes only
 	 */
 	@Deprecated
-	public SolutionUse() {
+	public ScriptUse() {
 	}
 
 	public LocalDateTime getCreatedAt() {
@@ -46,8 +48,8 @@ public class SolutionUse {
 		return createdAt.toLocalDate();
 	}
 
-	public SolutionUse(Solution solution) {
-		this.solution = solution;
+	public ScriptUse(Script script) {
+		this.script = script;
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package com.lalsberg.ops.script;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import groovy.lang.Script;
@@ -14,10 +16,13 @@ public class MyScript extends Script {
 	public Object runQuery(String query, EntityManager em) {
 		System.out.println(query);
 
-		Object bla = em.createNativeQuery(query).getSingleResult();
+		List<?> resultList = (List<?>) em.createNativeQuery(query).getResultList();
 
-		System.out.println("bla " + bla);
-		return bla;
+		if (resultList.isEmpty()) {
+			return null;
+		}
+
+		return resultList.get(0);
 	}
 
 	@Override

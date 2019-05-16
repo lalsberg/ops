@@ -1,14 +1,13 @@
 <template>
 	<div class="wrapper">
-
 		<div class="search-line">
-			<input type="search" class="filter" placeholder="Enter match ID" v-on:input="matchId = $event.target.value">
-			<tbutton class="btn-search" @buttonClicked="search()">
-				<i class="material-icons">play_arrow</i>
+			<input type="search" class="filter" placeholder="Filter scripts" v-on:input="filter = $event.target.value">
+			<tbutton class="btn-add-script" to="/createScript">
+				<i class="material-icons">add</i>
 			</tbutton>
 		</div>
 
-		<div class="script-panel" v-for="script in scripts">
+		<div class="script-panel" v-for="script in filteredScripts">
 			<the-script :script="script"/>
 		</div>
 	</div>
@@ -31,19 +30,27 @@
 		data() {
 			return {
 				scripts: [],
-				filter: '',
-				matchId: '',
+				filter: ''
 			}
 		},
 
-		methods: {
-			search: function() {
-				this.$http.get('http://localhost:8080/scripts/discover', {params:  {matchId: this.matchId}})
-						.then(res => res.json())
-						.then(scripts => this.scripts = scripts, err => console.log(err));
+		computed: {
+			filteredScripts() {
+				var activeScripts = this.scripts.filter(script => {return !script.archived });
+				console.log(activeScripts);
+				if (!this.filter) {
+					return activeScripts;
+				}
+				let exp = new RegExp(this.filter.trim(), 'i');
+				return activeScripts.filter(script => exp.test(script.title));
 			}
-		}
+		},
 
+		created() {
+			this.$http.get('http://localhost:8080/ops-scripts')
+				.then(res => res.json())
+				.then(scripts => this.scripts = scripts, err => console.log(err));
+		}
 	}
 </script>
 

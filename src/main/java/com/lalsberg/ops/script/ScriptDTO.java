@@ -18,6 +18,9 @@ public class ScriptDTO {
 	@JsonProperty(value = "solution")
 	private String solution;
 
+	@JsonProperty(value = "frequency")
+	private int frequency;
+
 	@JsonProperty(value = "archived")
 	private boolean archived;
 
@@ -28,11 +31,17 @@ public class ScriptDTO {
 	public ScriptDTO() {
 	}
 
-	public ScriptDTO(String title, String content, String solution) {
-		super();
+	public ScriptDTO(long id, String title, String content, String solution, int frequency, boolean archived) {
+		this.id = id;
 		this.title = title;
 		this.content = content;
 		this.solution = solution;
+		this.frequency = frequency;
+		this.archived = archived;
+	}
+
+	public long getId() {
+		return id;
 	}
 
 	public String getTitle() {

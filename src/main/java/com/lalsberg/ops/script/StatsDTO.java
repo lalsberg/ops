@@ -1,4 +1,4 @@
-package com.lalsberg.ops;
+package com.lalsberg.ops.script;
 
 import java.time.LocalDate;
 import java.util.Map;

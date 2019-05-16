@@ -73,7 +73,7 @@
 	    	},
 
 	    	edit: function(script) {
-	    		this.$router.push("/editscript/" + script.id);
+	    		this.$router.push("/editScript/" + script.id);
 	    	},
 
 	    	archive: function(script) {

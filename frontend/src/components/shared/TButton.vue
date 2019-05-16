@@ -17,7 +17,7 @@
             clickIt: function() {
                 this.$emit("buttonClicked");
                 if (this.to) {
-                    this.$router.push("/createSolution")
+                    this.$router.push(this.to)
                 }
             }
         }

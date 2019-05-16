@@ -45,7 +45,7 @@
 			this.loaded = false;
 			var chartdata = {};
 			chartdata.datasets = [];
-			this.$http.get('http://localhost:8080/solutions/stats')
+			this.$http.get('http://localhost:8080/scripts/stats')
 			// .then(res => console.log(res.body))
 			.then(res => res.json())
 			.then(res => {
